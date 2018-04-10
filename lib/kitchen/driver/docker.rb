@@ -400,7 +400,7 @@ module Kitchen
         begin
           cmd = "inspect --format '{{ .NetworkSettings.IPAddress }}'"
           cmd << " #{state[:container_id]}"
-          docker_command(cmd)
+          docker_command(cmd).strip # strip new lines here
         rescue
           raise ActionFailed,
           'Error getting internal IP of Docker container'
